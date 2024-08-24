@@ -63,10 +63,11 @@ jobs:
           remove-docker-images: 'true'
 
       - name: prep/dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install wget
-          sudo rm -f $(whereis unshare | cut -d' ' -f2) 
+        run: | 
+          curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+          sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+          sudo apt-get update && sudo apt-get install wget packer
+          
           
       - name: Checkout
         uses: actions/checkout@v4
