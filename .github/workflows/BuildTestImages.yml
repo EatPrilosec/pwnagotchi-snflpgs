@@ -2,37 +2,7 @@ name: Build All Test Images
 run-name: Build All Test Images
 on:
   workflow_dispatch:
-#    inputs:
-#      bb_ver:
-#        description: version
-#        required: true
-#        default: "alpha2"
-#        type: string
-#      uboot_gh_repo:
-#        description: u-boot github repo
-#        required: true
-#        default: ArchemedIan/u-boot-rockchip
-#        type: string
-#      uboot_ref:
-#        description: u-boot ref
-#        required: true
-#        default: bb
-#        type: string
-#      rkbin_ref:
-#        description: rkbin ref
-#        required: true
-#        default: master
-#        type: string
-#      armbian_gh_repo:
-#        description: armbian build github repo
-#        required: true
-#        default: armbian/build
-#        type: string
-#      armbian_ref:
-#        description: armbian ref
-#        required: true
-#        default: v23.11
-#        type: string
+
 jobs:
   BuildImages:
     name: Build ${{ matrix.id }}
@@ -50,7 +20,7 @@ jobs:
         #- id: "bananapwnm2zero"
         #  bit: "32"
         #- id: "bananapwnm4zero"
-          bit: "64"
+        #  bit: "64"
         
     steps:
       - name: Maximize build space
