@@ -1,5 +1,5 @@
-name: Build Test Images
-run-name: Build Test Images
+name: Build All Test Images
+run-name: Build All Test Images
 on:
   workflow_dispatch:
 #    inputs:
@@ -34,8 +34,8 @@ on:
 #        default: v23.11
 #        type: string
 jobs:
-  build:
-    name: ${{ matrix.id }}
+  BuildImages:
+    name: Build ${{ matrix.id }}
     #runs-on: ubuntu-latest
     runs-on: ubuntu-24.04
     strategy:
@@ -53,19 +53,19 @@ jobs:
           bit: "64"
         
     steps:
-#      - name: Maximize build space
-#        uses: easimon/maximize-build-space@master
-#        with:
-#          root-reserve-mb: 512
-#          swap-size-mb: 1024
-#          remove-dotnet: 'true'
-#          overprovision-lvm: 'true'
-#          remove-android: 'true'
-#          remove-haskell: 'true'
-#          remove-codeql: 'true'
-#          remove-docker-images: 'true'
+      - name: Maximize build space
+        uses: easimon/maximize-build-space@master
+        with:
+          root-reserve-mb: 512
+          swap-size-mb: 1024
+          remove-dotnet: 'true'
+          overprovision-lvm: 'true'
+          remove-android: 'true'
+          remove-haskell: 'true'
+          remove-codeql: 'true'
+          remove-docker-images: 'true'
 
-      - name: prep/dependencies
+      - name: Prep and Dependencies
         run: |
           curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
           sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
@@ -78,7 +78,7 @@ jobs:
         with:
           path: .
               
-      - name: Build ${{ matrix.id }}
+      - name: Build ${{ matrix.id }} Image
         run: |
           pwd
           echo
@@ -113,4 +113,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: Pwnagatchi-${{ matrix.id }}-TestImage-${{ env.GITHUB_RUN_NUMBER }}
-          path: pwnagotchi-snflpgs/**/*.xz
+          path: **/*.xz
