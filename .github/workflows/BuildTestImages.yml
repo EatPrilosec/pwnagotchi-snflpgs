@@ -1,5 +1,5 @@
 name: Build Test Images
-run-name: Build Test Image \# ${{ env.GITHUB_RUN_NUMBER }}
+run-name: Build Test Images
 on:
   workflow_dispatch:
 #    inputs:
