@@ -66,12 +66,9 @@ jobs:
         run: |
           curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
           sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-          sudo apt-get update && sudo apt-get install packer wget gettext
+          sudo apt-get update && sudo apt-get install packer wget gettext qemu-utils qemu-user-static qemu-user-binfmt
           packer plugins install github.com/solo-io/arm-image 
           #packer plugins install github.com/hashicorp/ansible
-          
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
           
       - name: Checkout
         uses: actions/checkout@v4
