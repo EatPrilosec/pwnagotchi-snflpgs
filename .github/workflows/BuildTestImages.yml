@@ -80,18 +80,26 @@ jobs:
           pwd
           echo
           ls -lR
+          echo ###############################################
           echo starting build...
-          echo
+          echo ###############################################
           packer init builder/pwnagotchi.json.pkr.hcl
           mkdir -p build/stage
           sudo make langs
           if [ "${{ matrix.id }}" = "image" ] || [ "${{ matrix.id }}" = "bananapwnm2zero" ]; then
-            echo making 32bit base
+            echo ###############################################
+            echo making 32bit base for ${{ matrix.id }}
+            echo ###############################################
             sudo make base32
           else
-            echo making 64bit base
+            echo ###############################################
+            echo making 64bit base for ${{ matrix.id }}
+            echo ###############################################
             sudo make base64
           fi
+          echo ###############################################
+          echo making 64bit image for ${{ matrix.id }}
+          echo ###############################################
           sudo make ${{ matrix.id }}
       
       - name: debug file listing
