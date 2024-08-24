@@ -89,5 +89,5 @@ jobs:
       - name: Upload ${{ matrix.id }} image
         uses: actions/upload-artifact@v4
         with:
-          name: Pwnagatchi-${{ matrix.id }}-TestImage-${{ $GITHUB_RUN_NUMBER }}
+          name: Pwnagatchi-${{ matrix.id }}-TestImage-${{ env.GITHUB_RUN_NUMBER }}
           path: pwnagotchi-snflpgs/**/*.xz
