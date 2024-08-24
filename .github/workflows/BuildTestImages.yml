@@ -41,8 +41,8 @@ jobs:
     strategy:
       matrix:
         include:
-          #- id: "image"
-          - id: "image64"
+          - id: "image"
+          #- id: "image64"
           #- id: "orangepwn02w"
           #- id: "bananapwnm2zero"
          # - id: "bananapwnm4zero"
@@ -85,7 +85,7 @@ jobs:
           packer init builder/pwnagotchi.json.pkr.hcl
           mkdir -p build/stage
           sudo make langs
-          sudo make bases
+          sudo make base32
           sudo make ${{ matrix.id }}
       
       - name: debug file listing
