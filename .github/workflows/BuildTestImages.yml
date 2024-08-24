@@ -66,7 +66,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install wget
-          sudo rm \$(whereis unshare | cut -d' ' -f2) 
+          sudo rm -f $(whereis unshare | cut -d' ' -f2) 
           
       - name: Checkout
         uses: actions/checkout@v4
