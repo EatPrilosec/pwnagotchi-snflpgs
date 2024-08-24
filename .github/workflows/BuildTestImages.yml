@@ -64,7 +64,7 @@ jobs:
 
       - name: prep/dependencies
         run: |
-          sudo apt-get update && sudo apt-get install wget
+          sudo apt-get update && sudo apt-get install wget xgettext
           
           
       - name: Checkout
