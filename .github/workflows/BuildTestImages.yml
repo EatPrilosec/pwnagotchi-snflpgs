@@ -85,7 +85,11 @@ jobs:
           packer init builder/pwnagotchi.json.pkr.hcl
           mkdir -p build/stage
           sudo make langs
-          sudo make base32
+          if [ "${{ matrix.id }}" = "image" ] || [ "${{ matrix.id }}" = "bananapwnm2zero" ]; then
+            sudo make base32
+          else
+            sudo make base64
+          fi
           sudo make ${{ matrix.id }}
       
       - name: debug file listing
