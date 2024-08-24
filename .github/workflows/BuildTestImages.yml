@@ -75,9 +75,12 @@ jobs:
           echo ###############################################
           sudo make ${{ matrix.id }}
       
-      - name: debug file listing
+      - name: debug 
         if: failure()
         run: |
+          echo ###############################################
+          echo ${{ matrix.id }} build failed, listing files
+          echo ###############################################
           ls -lR ${{ env.GITHUB_WORKSPACE }}
       
       - name: Upload ${{ matrix.id }} image
