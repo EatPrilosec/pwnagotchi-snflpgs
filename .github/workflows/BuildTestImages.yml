@@ -35,34 +35,23 @@ on:
 #        type: string
 jobs:
   build:
-    name: ${{ matrix.boards.id }}
+    name: ${{ matrix.id }}
     #runs-on: ubuntu-latest
     runs-on: ubuntu-24.04
     strategy:
       matrix:
-        boards: 
-        [
-            {
-              "id": "image",
-              "bit": "32"
-            },
-            {
-              "id": "image64",
-              "bit": "64"
-            },
-            {
-              "id": "orangepwn02w",
-              "bit": "64"
-            },
-            {
-              "id": "bananapwnm2zero",
-              "bit": "32"
-            },
-            {
-              "id": "bananapwnm4zero",
-              "bit": "64"
-            }
-        ]
+        include:
+        - id: "image"
+          bit: "32"
+        - id: "image64"
+          bit: "64"
+        - id: "orangepwn02w"
+          bit: "64"
+        - id: "bananapwnm2zero"
+          bit: "32"
+        - id: "bananapwnm4zero"
+          bit: "64"
+        
     steps:
 #      - name: Maximize build space
 #        uses: easimon/maximize-build-space@master
@@ -89,7 +78,7 @@ jobs:
         with:
           path: .
               
-      - name: Build ${{ matrix.boards.id }}
+      - name: Build ${{ matrix.id }}
         run: |
           pwd
           echo
@@ -100,28 +89,28 @@ jobs:
           packer init builder/pwnagotchi.json.pkr.hcl
           mkdir -p build/stage
           sudo make langs
-          if [ "${{ matrix.boards.bit }}" = "32" ]; then
+          if [ "${{ matrix.bit }}" = "32" ]; then
             echo ###############################################
-            echo making 32bit base for ${{ matrix.boards.id }}
+            echo making 32bit base for ${{ matrix.id }}
             echo ###############################################
             sudo make base32
           else
             echo ###############################################
-            echo making 64bit base for ${{ matrix.boards.id }}
+            echo making 64bit base for ${{ matrix.id }}
             echo ###############################################
             sudo make base64
           fi
           echo ###############################################
-          echo making 64bit image for ${{ matrix.boards.id }}
+          echo making 64bit image for ${{ matrix.id }}
           echo ###############################################
-          sudo make ${{ matrix.boards.id }}
+          sudo make ${{ matrix.id }}
       
       - name: debug file listing
         run: |
           ls -l ${{ env.GITHUB_WORKSPACE }}
       
-      - name: Upload ${{ matrix.boards.id }} image
+      - name: Upload ${{ matrix.id }} image
         uses: actions/upload-artifact@v4
         with:
-          name: Pwnagatchi-${{ matrix.boards.id }}-TestImage-${{ env.GITHUB_RUN_NUMBER }}
+          name: Pwnagatchi-${{ matrix.id }}-TestImage-${{ env.GITHUB_RUN_NUMBER }}
           path: pwnagotchi-snflpgs/**/*.xz
