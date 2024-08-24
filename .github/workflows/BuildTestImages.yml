@@ -70,17 +70,18 @@ jobs:
           packer plugins install github.com/solo-io/arm-image 
           packer plugins install github.com/hashicorp/ansible
           
-          
-          
-          
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          path: pwnagotchi-snflpgs
+          path: .
               
       - name: Build ${{ matrix.id }}
         run: |
-          cd pwnagotchi-snflpgs
+          pwd
+          echo
+          ls -lR
+          echo starting build...
+          echo
           sudo make langs
           sudo make bases
           sudo make ${{ matrix.id }}
