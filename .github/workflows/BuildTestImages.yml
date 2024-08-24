@@ -35,7 +35,7 @@ on:
 #        type: string
 jobs:
   build:
-    name: ${{ matrix.boards.id }}
+    name: ${{ matrix.id }}
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -70,11 +70,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: pwnagotchi-snflpgs
-
-      - name: prep/dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install wget
               
       - name: Build ${{ matrix.id }}
         run: |
