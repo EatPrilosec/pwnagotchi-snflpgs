@@ -42,10 +42,10 @@ jobs:
       matrix:
         include:
           - id: "image"
-          #- id: "image64"
-          #- id: "orangepwn02w"
-          #- id: "bananapwnm2zero"
-         # - id: "bananapwnm4zero"
+          - id: "image64"
+          - id: "orangepwn02w"
+          - id: "bananapwnm2zero"
+          - id: "bananapwnm4zero"
           #- id: ""
           #- id: ""
 
