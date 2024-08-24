@@ -63,10 +63,8 @@ jobs:
           remove-docker-images: 'true'
 
       - name: prep/dependencies
-        run: | 
-          curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
-          sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
-          sudo apt-get update && sudo apt-get install wget packer
+        run: |
+          sudo apt-get update && sudo apt-get install wget
           
           
       - name: Checkout
@@ -77,6 +75,7 @@ jobs:
       - name: Build ${{ matrix.id }}
         run: |
           cd pwnagotchi-snflpgs
+          sudo make langs
           sudo make bases
           sudo make ${{ matrix.id }}
       
