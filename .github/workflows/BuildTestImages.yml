@@ -64,8 +64,10 @@ jobs:
 
       - name: prep/dependencies
         run: |
-          sudo apt-get update && sudo apt-get install wget gettext  
-          
+          curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+          sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+          sudo apt-get update && sudo apt-get install packer wget gettext
+          /usr/bin/packer plugins install github.com/solo-io/arm-image
           
       - name: Checkout
         uses: actions/checkout@v4
