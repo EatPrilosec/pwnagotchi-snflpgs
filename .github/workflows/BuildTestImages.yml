@@ -86,8 +86,10 @@ jobs:
           mkdir -p build/stage
           sudo make langs
           if [ "${{ matrix.id }}" = "image" ] || [ "${{ matrix.id }}" = "bananapwnm2zero" ]; then
+            echo making 32bit base
             sudo make base32
           else
+            echo making 64bit base
             sudo make base64
           fi
           sudo make ${{ matrix.id }}
