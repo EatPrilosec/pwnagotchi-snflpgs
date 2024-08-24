@@ -81,7 +81,6 @@ jobs:
       - name: Build ${{ matrix.id }}
         run: |
           cd pwnagotchi-snflpgs
-          packer init .
           sudo make langs
           sudo make bases
           sudo make ${{ matrix.id }}
