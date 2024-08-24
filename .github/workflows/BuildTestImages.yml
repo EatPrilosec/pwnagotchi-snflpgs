@@ -36,7 +36,8 @@ on:
 jobs:
   build:
     name: ${{ matrix.id }}
-    runs-on: ubuntu-latest
+    #runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         include:
