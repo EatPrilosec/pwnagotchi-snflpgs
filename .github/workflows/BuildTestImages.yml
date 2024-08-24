@@ -75,8 +75,8 @@ jobs:
       - name: Build ${{ matrix.id }}
         run: |
           cd pwnagotchi-snflpgs
-          make bases
-          make ${{ matrix.id }}
+          sudo make bases
+          sudo make ${{ matrix.id }}
       
       - name: debug file listing
         run: |
