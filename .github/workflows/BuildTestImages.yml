@@ -70,6 +70,9 @@ jobs:
           packer plugins install github.com/solo-io/arm-image 
           #packer plugins install github.com/hashicorp/ansible
           
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+          
       - name: Checkout
         uses: actions/checkout@v4
         with:
