@@ -1,5 +1,5 @@
 name: Build Test Images
-run-name: Build BoughBoot-${{ inputs.bb_ver }}-dev
+run-name: Build Test Image \# ${{ env.GITHUB_RUN_NUMBER }}
 on:
   workflow_dispatch:
 #    inputs:
