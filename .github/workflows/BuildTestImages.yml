@@ -64,7 +64,7 @@ jobs:
 
       - name: prep/dependencies
         run: |
-          sudo apt-get update && sudo apt-get install wget xgettext
+          sudo apt-get update && sudo apt-get install wget liblocale-xgettext-perl
           
           
       - name: Checkout
